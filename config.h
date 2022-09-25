@@ -10,7 +10,7 @@ static const unsigned int systrayonleft = 0;           /* 0: systray in the righ
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor,     False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
-static const char *fonts[]          = {"JetBrainsMono Nerd Font:size=13", "Font Awesome 6 Free Solid:size=13" };
+static const char *fonts[]          = {"UbuntuMono:size=13", "Font Awesome 6 Free Solid:size=13" };
 static const char dmenufont[]       = "UbuntuMono:bold:pixelsize=26";
 static const char col_gray1[]       = "#282a36";
 static const char col_gray2[]       = "#282a36";
@@ -30,7 +30,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1 ", "2", "3", "4", "5", "6", "7", "8λ", "9" };
+static const char *tags[] = { "1 ", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
