@@ -1,4 +1,4 @@
-/* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -38,8 +38,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "qBittorrent",  "qbittorrent",       NULL,       2,       0,           -1 },
 };
 
 /* layout(s) */
@@ -120,6 +119,11 @@ static const Key keys[] = {
 	{ Mod1Mask|ControlMask, 	XK_s,	   spawn,	    SHCMD("steam") },
 	{ Mod1Mask|ControlMask, 	XK_t,	   spawn,	    SHCMD("thunderbird") },
 	{ Mod1Mask|ControlMask, 	XK_q,	   spawn,	    SHCMD("qbittorrent") },
+
+	/* MEDIA CONTROL KEYS */
+        { 0, XF86XK_AudioMute, spawn, SHCMD("amixer set Master toggle; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioLowerVolume, spawn, SHCMD("amixer set Master 5%-; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("amixer set Master 5%+; kill -44 $(pidof dwmblocks)") },
 };
 
 /* button definitions */
