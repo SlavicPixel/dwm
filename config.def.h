@@ -10,21 +10,27 @@ static const unsigned int systrayonleft = 0;           /* 0: systray in the righ
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor,     False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
-static const char *fonts[]          = { "monospace:size=14" };
+static const char *fonts[]          = {"JetBrainsMono Nerd Font:size=13", "Font Awesome 6 Free Solid:size=13" };
 static const char dmenufont[]       = "UbuntuMono:bold:pixelsize=26";
 static const char col_gray1[]       = "#282a36";
 static const char col_gray2[]       = "#282a36";
 static const char col_gray3[]       = "#96b5b4";
 static const char col_gray4[]       = "#d7d7d7";
 static const char col_cyan[]        = "#4d4d4d";
+static const char col_black[]       = "#000000";
+static const char col_red[]         = "#ff0000";
+static const char col_yellow[]      = "#ffff00";
+static const char col_white[]       = "#ffffff";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] =   { col_gray3, col_gray1,  col_gray2 },
+       	[SchemeSel]  =   { col_gray4, col_cyan,   col_cyan },
+       	[SchemeWarn] =   { col_black, col_yellow, col_red },
+       	[SchemeUrgent]=  { col_white, col_red,    col_red },
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1 ", "2", "3", "4", "5", "6", "7", "8λ", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):

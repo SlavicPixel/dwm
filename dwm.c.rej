@@ -1,54 +1,21 @@
 --- dwm.c
 +++ dwm.c
-@@ -211,13 +233,16 @@ static void pop(Client *);
- static void propertynotify(XEvent *e);
- static void quit(const Arg *arg);
- static Monitor *recttomon(int x, int y, int w, int h);
-+static void removesystrayicon(Client *i);
- static void resize(Client *c, int x, int y, int w, int h, int interact);
-+static void resizebarwin(Monitor *m);
- static void resizeclient(Client *c, int x, int y, int w, int h);
- static void resizemouse(const Arg *arg);
-+static void resizerequest(XEvent *e);
- static void restack(Monitor *m);
- static void run(void);
- static void scan(void);
--static int sendevent(Client *c, Atom proto);
-+static int sendevent(Window w, Atom proto, int m, long d0, long d1, long d2, long d3, long d4);
- static void sendmon(Client *c, Monitor *m);
- static void setclientstate(Client *c, long state);
- static void setfocus(Client *c);
-@@ -795,13 +888,17 @@ drawbar(Monitor *m)
- 	if (!m->showbar)
- 		return;
- 
-+	if(showsystray && m == systraytomon(m) && !systrayonleft)
-+		stw = getsystraywidth();
-+
- 	/* draw status first so it can be overdrawn by tags later */
+@@ -714,7 +718,17 @@ drawbar(Monitor *m)
  	if (m == selmon) { /* status is only drawn on selected monitor */
  		drw_setscheme(drw, scheme[SchemeNorm]);
--		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+ 		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
 -		drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
-+		tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px extra right padding */
-+		drw_text(drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
++		while (1) {
++			if ((unsigned int)*ts > LENGTH(colors)) { ts++; continue ; }
++			ctmp = *ts;
++			*ts = '\0';
++			drw_text(drw, m->ww - tw + tx, 0, tw - tx, bh, 0, tp, 0);
++			tx += TEXTW(tp) -lrpad;
++			if (ctmp == '\0') { break; }
++			drw_setscheme(drw, scheme[(unsigned int)(ctmp-1)]);
++			*ts = ctmp;
++			tp = ++ts;
++		}
  	}
  
-+	resizebarwin(m);
  	for (c = m->clients; c; c = c->next) {
- 		occ |= c->tags;
- 		if (c->isurgent)
-@@ -1208,6 +1327,13 @@ maprequest(XEvent *e)
- 	static XWindowAttributes wa;
- 	XMapRequestEvent *ev = &e->xmaprequest;
- 
-+	Client *i;
-+	if ((i = wintosystrayicon(ev->window))) {
-+		sendevent(i->win, netatom[Xembed], StructureNotifyMask, CurrentTime, XEMBED_WINDOW_ACTIVATE, 0, systray->win, XEMBED_EMBEDDED_VERSION);
-+		resizebarwin(selmon);
-+		updatesystray();
-+	}
-+
- 	if (!XGetWindowAttributes(dpy, ev->window, &wa))
- 		return;
- 	if (wa.override_redirect)
