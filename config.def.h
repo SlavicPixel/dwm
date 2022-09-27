@@ -39,7 +39,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "qBittorrent",  "qbittorrent",       NULL,       2,       0,           -1 },
-	{ "Qalculate-gtk",  "qalculate-gtk",       "Qalculate!",       2,       1,           0 },
+	{ "Qalculate-gtk",  "qalculate-gtk",       "Qalculate!",       1,       1,           0 },
 };
 
 /* layout(s) */
