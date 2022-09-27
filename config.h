@@ -39,6 +39,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "qBittorrent",  "qbittorrent",       NULL,       2,       0,           -1 },
+	{ "Qalculate-gtk",  "qalculate-gtk",       "Qalculate!",       2,       1,           0 },
 };
 
 /* layout(s) */
@@ -89,6 +90,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+	{ MODKEY, 			XK_x,	   spawn,	   SHCMD("archlinux-logout") },
 	{ MODKEY|ControlMask,           XK_Return, zoom,           {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
@@ -124,6 +126,10 @@ static const Key keys[] = {
         { 0, XF86XK_AudioMute, spawn, SHCMD("amixer set Master toggle; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioLowerVolume, spawn, SHCMD("amixer set Master 5%-; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("amixer set Master 5%+; kill -44 $(pidof dwmblocks)") },
+	/* OTHER KEYS */
+	{ 0,                       	XK_Print,  spawn,          SHCMD("xfce4-screenshooter") },
+	{ MODKEY,                      	XK_Print,  spawn,          SHCMD("thunar ~/Pictures/Screenshots") },
+	{ 0,                       	XF86XK_Calculator,      spawn,          SHCMD("qalculate-gtk") },
 };
 
 /* button definitions */
