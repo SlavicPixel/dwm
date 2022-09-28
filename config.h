@@ -10,7 +10,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;     /* 0 means no bar */
 static const int topbar             = 1;     /* 0 means bottom bar */
-static const char *fonts[]          = {"UbuntuMono:size=13", "Font Awesome 6 Free Solid:size=13" };
+static const char *fonts[]          = {"JetBrainsMono Nerd Font:size=13", "Font Awesome 6 Free Solid:size=13" };
 static const char dmenufont[]       = "UbuntuMono:bold:pixelsize=26";
 static const char col_gray1[]       = "#282a36";
 static const char col_gray2[]       = "#282a36";
