@@ -119,7 +119,7 @@ static const Key keys[] = {
 	{ Mod1Mask|ControlMask, 	XK_c,	   spawn,	    SHCMD("vscodium") },
 	{ Mod1Mask|ControlMask, 	XK_p,	   spawn,	    SHCMD("pavucontrol") },
 	{ Mod1Mask|ControlMask, 	XK_v,	   spawn,	    SHCMD("virt-manager") },
-	{ Mod1Mask|ControlMask, 	XK_s,	   spawn,	    SHCMD("steam") },
+	{ Mod1Mask|ControlMask, 	XK_s,	   spawn,	    SHCMD("steam-screensaver-fix-runtime") },
 	{ Mod1Mask|ControlMask, 	XK_t,	   spawn,	    SHCMD("thunderbird") },
 	{ Mod1Mask|ControlMask, 	XK_q,	   spawn,	    SHCMD("qbittorrent") },
 
